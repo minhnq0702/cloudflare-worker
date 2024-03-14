@@ -42,18 +42,19 @@ export default {
 		return new Response('Hello World! This is my new first Worker project.');
 	},
 
-	// /**
-	//  * The main scheduled handler, called on a schedule
-	//  * @param {ScheduledEvent} event
-	//  * @param {Env} env
-	//  * @param {ExecutionContext} ctx
-	//  * @returns {Promise<void>}
-	//  */
-	// async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> { 
-	// 	// console.log('Scheduled event:', event);
-	// 	ctx.waitUntil(new Promise(resolve => {
-	// 		console.log('This will run after the main event handler')
-	// 		setTimeout(resolve, 1000);
-	// 	}));
-	// }
+	/**
+	 * The main scheduled handler, called on a schedule
+	 * @param {ScheduledEvent} event
+	 * @param {Env} env
+	 * @param {ExecutionContext} ctx
+	 * @returns {Promise<void>}
+	 */
+	async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> { 
+		console.log('Scheduled event:', event);
+		ctx.waitUntil(new Promise(resolve => {
+			setTimeout(resolve, 1000);
+			// add log to cloudflare worker
+			console.log('This is a scheduled event log.');
+		}));
+	}
 };
