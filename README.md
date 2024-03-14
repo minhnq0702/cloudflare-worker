@@ -30,3 +30,6 @@ npm install @cloudflare/wrangler --save-dev
 
 npm install wrangler@latest
 
+
+## List of workers in this project
+### [worker-test](https://worker-test.minhnq-0702.workers.dev/)
