@@ -1,0 +1,23 @@
+{
+  "name": "worker-test",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "start-schedule": "npx wrangler dev --test-scheduled"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240312.0",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.0.4",
+    "wrangler": "^3.34.2"
+  },
+  "dependencies": {
+    "eslint": "^8.57.0"
+  }
+}
