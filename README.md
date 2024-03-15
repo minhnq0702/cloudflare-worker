@@ -32,4 +32,12 @@ npm install wrangler@latest
 
 
 ## List of workers in this project
-### [worker-test](https://worker-test.minhnq-0702.workers.dev/)
+### 1. [worker-test](https://worker-test.minhnq-0702.workers.dev/)
+#### KV Binding - Expose URL to interact with KV
+Enpoint: /test-kv
+
+Method:
+- POST
+
+
+### 2. [Underconstruction](https://my.mingne.dev)

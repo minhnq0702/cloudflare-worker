@@ -39,11 +39,11 @@ export default {
 		// return another website
 		// return await fetch('https://init.vn', request);
 		
-		console.log(env);
-
+		const url = new URL(request.url);
 		// regex matching request url with "/test-kv"
 		const kv_url_reg = /\/test-kv(\?.*)?$/;
 		if (kv_url_reg.test(request.url)) {
+			// update key value to KV when method is POST
 			if (request.method === 'POST') {
 				const formData = await request.formData();
 				// log formData
@@ -62,6 +62,49 @@ export default {
 						await env.WorkerTest.put(name, value);
 					}
 				}
+
+				return Response.json({
+					message: 'Update key value to KV successfully'
+				});
+			}
+
+			// get value from KV when method is GET with key get from query parameter
+			else if (request.method === 'GET') {
+				const key = url.searchParams.get('key');
+				if (key) {
+					let _key: string;
+					if (typeof key === 'object') {
+						const decoder = new TextDecoder('utf-8');
+						_key = decoder.decode(key);
+					} else {
+						_key = key;
+					}
+					const value = await env.WorkerTest.get(_key, 'text');
+					return Response.json({
+						'message': 'Get key value from KV successfully',
+						'key': _key,
+						'value': value
+					});
+				}
+			}
+			
+			// delete key value to KV when method is DELETE with key get from query parameter
+			else if (request.method === 'DELETE') {
+				const key = url.searchParams.get('key');
+				if (key) {
+					let _key: string;
+					if (typeof key === 'object') {
+						const decoder = new TextDecoder('utf-8');
+						_key = decoder.decode(key);
+					} else {
+						_key = key;
+					}
+					await env.WorkerTest.delete(_key);
+					return Response.json({
+						message: `Delete key ${_key} from KV successfully`
+					});
+				}
+			
 			}
     }
 		return new Response('Hello World! This is my new first Worker project.');
