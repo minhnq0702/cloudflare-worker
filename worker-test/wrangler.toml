@@ -2,6 +2,13 @@ name = "worker-test"
 main = "src/index.ts"
 compatibility_date = "2024-03-12"
 
+[triggers]
+# Schedule cron triggers:
+# - At every 3rd minute
+# - At 3PM on first day of the month
+# - At 11:59PM on the last weekday of the month
+crons = [ "*/30 * * * *", "0 15 1 * *", "59 23 LW * *" ]
+
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
 # Note: Use secrets to store sensitive data.
 # Docs: https://developers.cloudflare.com/workers/platform/environment-variables
@@ -10,9 +17,12 @@ compatibility_date = "2024-03-12"
 
 # Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
 # Docs: https://developers.cloudflare.com/workers/runtime-apis/kv
-# [[kv_namespaces]]
-# binding = "MY_KV_NAMESPACE"
-# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+[[kv_namespaces]]
+binding = "WorkerTest"
+id = "2cb6a9512a0641bc877032018d397e4f"
+# kv_namespaces = [
+#   { binding = "WorkerTest", id = "2cb6a9512a0641bc877032018d397e4f" }
+# ]
 
 # Bind an R2 Bucket. Use R2 to store arbitrarily large blobs of data, such as files.
 # Docs: https://developers.cloudflare.com/r2/api/workers/workers-api-usage/

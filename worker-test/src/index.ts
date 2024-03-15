@@ -10,7 +10,7 @@
 
 export interface Env {
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
-	// MY_KV_NAMESPACE: KVNamespace;
+	WorkerTest: KVNamespace;
 	//
 	// Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
 	// MY_DURABLE_OBJECT: DurableObjectNamespace;
@@ -34,11 +34,36 @@ export default {
 	 * @param {ExecutionContext} ctx
 	 * @returns {Promise<Response>}
 	 */
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		// return another website
 		// return await fetch('https://init.vn', request);
+		
+		console.log(env);
 
-		console.log(request.json().then(console.log))
+		// regex matching request url with "/test-kv"
+		const kv_url_reg = /\/test-kv(\?.*)?$/;
+		if (kv_url_reg.test(request.url)) {
+			if (request.method === 'POST') {
+				const formData = await request.formData();
+				// log formData
+				// console.log(formData);
+
+				const entries = [...formData.entries()];
+				// log entries
+				// console.log(entries);
+
+				await env.WorkerTest.put(entries[0][0], entries[0][1] as string);
+
+				// forLoop to put all entries to KV and await each put
+				for (const [name, value] of entries) {
+					// check type of value
+					if (typeof value === 'string') {
+						await env.WorkerTest.put(name, value);
+					}
+				}
+			}
+    }
 		return new Response('Hello World! This is my new first Worker project.');
 	},
 
