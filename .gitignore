@@ -22,3 +22,6 @@ pnp/
 *.komodoproject
 *.komodotools
 *.kate-swp
+
+# Environment configuration
+.env
