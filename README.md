@@ -34,10 +34,31 @@ npm install wrangler@latest
 ## List of workers in this project
 ### 1. [worker-test](https://worker-test.minhnq-0702.workers.dev/)
 #### KV Binding - Expose URL to interact with KV
-Enpoint: /test-kv
+`Enpoint`: `/test-kv`
 
 Method:
-- POST
+- `GET`: `/test-kv?key=key-to-get-value`
+    - Get the value of provided key
 
+- `POST`: `/test-kv`
+    - Payload in form-data
+    ```javascript
+    {
+        "key1": "value1",
+        "key2": "value2"
+    }
+    ```
+    - data in form will be stored in KV
+
+- `DELETE`: `/test-kv?key=key-to-delete`
+    - Delete the key-value of provided key
+
+
+`Endpoint`: `/redirect?url=redirect-url`
+
+Method:
+- `ALL`: `/redirect?url=https%3A%2F%2Fmy.mingne.dev`
+    - should escape redirected url
+    
 
 ### 2. [Underconstruction](https://my.mingne.dev)
