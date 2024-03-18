@@ -95,6 +95,12 @@ router.delete('/test-kv', async ({ query }, env: Env) => {
 	});
 })
 
+router.all('/redirect', (request) => {
+	const query = Object.fromEntries(new URL(request.url).searchParams);
+	const redirectUrl = query.url || null;
+	return Response.redirect(redirectUrl || 'https://www.google.com', 301);
+ });
+
 export default {
 	fetch: router.handle,
 
