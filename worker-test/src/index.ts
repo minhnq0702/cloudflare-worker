@@ -37,63 +37,60 @@ router
 	})
 	.get('/favicon.ico', () => new Response(null, {status: 204}));
 
-router.get('/test-kv', async ({ query }, env: Env) => {
-
-	const _key = query.key || null;
-	if (_key && typeof _key === 'string') {
-		const value = await env.WorkerTest.get(_key, 'text');
-		return json({
-			'message': 'Get key value from KV successfully',
-			'key': _key,
-			'value': value
-		});
-	}
-	return json({
-		'message': 'No key provided',
-	}, {
-		status: 400,
-	});
-})
-	
-router.post('/test-kv', async (request, env: Env) => {
-	const contentType = request.headers.get('content-type') || '';
-  if (!contentType.includes('multipart/form-data')) {
-    return json({
-      message: 'Invalid content type. Expected multipart/form-data.'
-    }, {
-      status: 400,
-    });
-	}
-	
-	const formData = await request.formData();
-	
-	if (formData) {
-		const entries = [...formData.entries()];
-		for (const [name, value] of entries) {
-			console.log(name, value);
-			await env.WorkerTest.put(name, value as string);
+router
+	.get('/test-kv', async ({ query }, env: Env) => {
+		const _key = query.key || null;
+		if (_key && typeof _key === 'string') {
+			const value = await env.WorkerTest.get(_key, 'text');
+			return json({
+				'message': 'Get key value from KV successfully',
+				'key': _key,
+				'value': value
+			});
 		}
 		return json({
-			message: 'Update key value to KV successfully'
+			'message': 'No key provided',
+		}, {
+			status: 400,
 		});
-	}
-	
-});
-
-router.delete('/test-kv', async ({ query }, env: Env) => {
-	const _key = query.key || null;
-	if (_key && typeof _key === 'string') {
-		await env.WorkerTest.delete(_key);
-		return json({
-			message: `Delete key ${_key} from KV successfully`
-		});
-	}
-	return json({
-		'message': 'No key provided',
-	}, {
-		status: 400,
+	})
+	.post('/test-kv', async (request, env: Env) => {
+		const contentType = request.headers.get('content-type') || '';
+		if (!contentType.includes('multipart/form-data')) {
+			return json({
+				message: 'Invalid content type. Expected multipart/form-data.'
+			}, {
+				status: 400,
+			});
+		}
+		
+		const formData = await request.formData();
+		
+		if (formData) {
+			const entries = [...formData.entries()];
+			for (const [name, value] of entries) {
+				console.log(name, value);
+				await env.WorkerTest.put(name, value as string);
+			}
+			return json({
+				message: 'Update key value to KV successfully'
+			});
+		}
 	});
-})
+	router.delete('/test-kv', async ({ query }, env: Env) => {
+		const _key = query.key || null;
+		if (_key && typeof _key === 'string') {
+			await env.WorkerTest.delete(_key);
+			return json({
+				message: `Delete key ${_key} from KV successfully`
+			});
+		}
+		return json({
+			'message': 'No key provided',
+		}, {
+			status: 400,
+		});
+	})
 
 router.all('/redirect', (request) => {
 	const query = Object.fromEntries(new URL(request.url).searchParams);
