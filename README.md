@@ -44,6 +44,7 @@ npm create cloudflare@latest {project-name}
 
 ## List of workers in this project
 ### 1. [worker-test](https://worker-test.minhnq-0702.workers.dev/)
+
 #### KV Binding - Expose URL to interact with KV
 `Enpoint`: `/test-kv`
 
@@ -72,7 +73,12 @@ Method:
     - should escape redirected url
 
 [Router library: ITTY-ROUTER](https://itty.dev/)
-    
+
+#### Cron run scheduled action
+
+Lear how to setup cron run schedule action in this sample worker
+- [Schedule Code](worker-test/src/index.ts)
+- [Cron setup](worker-test/wrangler.toml)
 
 ### 2. [worker-D1-integration](https://my.mingne.dev)
 > under construction
