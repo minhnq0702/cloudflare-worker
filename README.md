@@ -33,6 +33,14 @@ npm install @cloudflare/wrangler --save-dev
 npm install wrangler@latest
 ```
 
+### Create new cloudflare worker project by CLI
+```bash
+cd {SOURCE}/cloudflare-worker
+
+npm create cloudflare@latest {project-name}
+```
+
+
 
 ## List of workers in this project
 ### 1. [worker-test](https://worker-test.minhnq-0702.workers.dev/)
