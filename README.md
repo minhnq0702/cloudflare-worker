@@ -40,6 +40,13 @@ cd {SOURCE}/cloudflare-worker
 npm create cloudflare@latest {project-name}
 ```
 
+### Install eslint
+```bash
+npm install eslint
+
+npx eslint --init
+```
+
 
 
 ## List of workers in this project
