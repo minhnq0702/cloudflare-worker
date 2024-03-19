@@ -1,7 +1,8 @@
--- DROP TABLE IF EXISTS;
+-- drop all table
 DROP TABLE IF EXISTS sale_order_item;
 DROP TABLE IF EXISTS sale_order;
 DROP TABLE IF EXISTS customer;
+DROP TABLE IF EXISTS product;
 
 -- add table customer
 CREATE TABLE customer (

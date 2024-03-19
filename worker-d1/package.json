@@ -9,7 +9,7 @@
     "test": "vitest",
     "create-d1": "wrangler d1 create prod-worker-d1",
     "dev-d1-migrate": "wrangler d1 execute prod-worker-d1 --local --file=schema/schema.sql",
-    "dev-d1-query": "wrangler d1 execute prod-worker-d1 --local --command='SELECT * FROM customer'"
+    "d1-migrate": "wrangler d1 execute prod-worker-d1 --remote --file=schema/schema.sql"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.1.0",
