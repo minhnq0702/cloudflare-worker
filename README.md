@@ -22,13 +22,16 @@ To install Volta, follow these steps:
 
 
 ### Install cloudflare Wrangler
-> Skip this if your project already installed Wrangler
 
+> Skip this if your project already installed Wrangler
+```bash
 npm install @cloudflare/wrangler --save-dev
+```
 
 > update Wrangler
-
+```bash 
 npm install wrangler@latest
+```
 
 
 ## List of workers in this project
@@ -59,6 +62,8 @@ Method:
 Method:
 - `ALL`: `/redirect?url=https%3A%2F%2Fmy.mingne.dev`
     - should escape redirected url
+
+[Router library: ITTY-ROUTER](https://itty.dev/)
     
 
 ### 2. [Underconstruction](https://my.mingne.dev)
