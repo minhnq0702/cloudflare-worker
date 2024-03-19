@@ -34,10 +34,11 @@ import { Binding as Env } from './bindings/binding';
 
 export default {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-		// return new Response('Hello World!');
-		// console.log('process request on root', env)
+	// async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+	// 	return app.fetch(request, env, ctx);
+	// },
 
-		return app.fetch(request, env, ctx);
-	},
+	fetch: (request: Request, env: Env, ctx: ExecutionContext) => app.fetch(request, env, ctx),
+
+	// * add other event handlers here
 };
