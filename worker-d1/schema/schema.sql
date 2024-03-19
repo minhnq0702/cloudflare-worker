@@ -15,9 +15,13 @@ CREATE TABLE customer (
 -- add table product
 CREATE TABLE product (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    code TEXT NOT NULL,
     name TEXT NOT NULL,
     price DECIMAL(10, 2) NOT NULL
 );
+
+-- add constraint unique product code
+CREATE UNIQUE INDEX product_code_unique ON product (code);
 
 -- add table sale_order and sale_order_item
 CREATE TABLE sale_order (
