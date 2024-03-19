@@ -6,7 +6,10 @@
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
     "start": "wrangler dev",
-    "test": "vitest"
+    "test": "vitest",
+    "create-d1": "wrangler d1 create prod-worker-d1",
+    "dev-d1-migrate": "wrangler d1 execute prod-worker-d1 --local --file=schema/schema.sql",
+    "dev-d1-query": "wrangler d1 execute prod-worker-d1 --local --command='SELECT * FROM customer'"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.1.0",
@@ -17,5 +20,8 @@
     "typescript": "^5.0.4",
     "vitest": "1.3.0",
     "wrangler": "^3.0.0"
+  },
+  "dependencies": {
+    "hono": "^4.1.2"
   }
 }

@@ -9,6 +9,11 @@ compatibility_flags = ["nodejs_compat"]
 # [vars]
 # MY_VARIABLE = "production_value"
 
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "prod-worker-d1"
+database_id = "60858a00-2e7d-4545-bf7d-7e046aa0b9a5"
+
 # Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
 # Docs: https://developers.cloudflare.com/workers/runtime-apis/kv
 # [[kv_namespaces]]
