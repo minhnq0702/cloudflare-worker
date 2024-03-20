@@ -16,6 +16,14 @@ const productSchema = z.object({
   price: z.number().optional().default(0.0),
 });
 
+const saleOrderSchema = z.object({
+  id: z.number().optional(),
+  customer_id: z.number(),
+  order_date: z.date(),
+  total: z.number().optional().default(0.0),
+});
+
+
 type _validationErrType = ({
   message: string;
   path: string;
@@ -39,8 +47,7 @@ const validator: Hook<z.TypeOf<z.ZodType>, Env, string, object> = (result, c) =>
       message: 'Bad Payload format',
       validtonErrs: validationErrs,
     }, {
-      status: 400
-    
+      status: 400,
     });
   }
 }
@@ -48,6 +55,7 @@ const validator: Hook<z.TypeOf<z.ZodType>, Env, string, object> = (result, c) =>
 export default {
   customerSchema,
   productSchema,
+  saleOrderSchema,
   validator,
 }
 

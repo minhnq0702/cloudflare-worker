@@ -26,16 +26,16 @@ CREATE UNIQUE INDEX product_code_unique ON product (code);
 -- add table sale_order and sale_order_item
 CREATE TABLE sale_order (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    customer_id INT NOT NULL,
+    customer_id INTEGER NOT NULL,
     order_date DATE NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
 
 CREATE TABLE sale_order_item (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    sale_order_id INT NOT NULL,
-    product_id INT NOT NULL,
-    quantity INT NOT NULL,
+    sale_order_id INTEGER NOT NULL,
+    product_id INTEGER NOT NULL,
+    quantity DECIMAL(10, 2) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (sale_order_id) REFERENCES sale_order(id),
     FOREIGN KEY (product_id) REFERENCES product(id)
