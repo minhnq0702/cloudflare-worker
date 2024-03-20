@@ -16,8 +16,6 @@ const productSchema = z.object({
   code: z.string(),
   name: z.string(),
   price: z.number().optional().default(0.0),
-  // stock: z.number(),
-  // description: z.string().optional(),
 });
 
 type _validationErrType = ({
