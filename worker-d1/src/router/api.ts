@@ -40,16 +40,7 @@ api
   .post(
     zValidator('json', schema.customerSchema, schema.validator),
     async (c) => {
-      let _customer;
-      try {
-        // TODO should validate the payload
-        // _customer = await c.req.json<Customer>();
-        _customer = c.req.valid('json')
-      }
-      catch (error) {
-        return new Response('Bad Payload format', { status: 400 });
-      }
-
+      const _customer = c.req.valid('json')
       try {
         await c.env.DB
           .prepare(
@@ -94,15 +85,7 @@ api
   .post(
     zValidator('json', schema.productSchema, schema.validator),
     async (c) => {
-      let _product;
-      try {
-        // TODO should validate the payload
-        // _product = await c.req.json<Product>();
-        _product = c.req.valid('json');
-      } catch (error) {
-        return new Response('Bad Payload format', { status: 400 });
-      }
-
+      const _product = c.req.valid('json');
       try {
         await c.env.DB
           .prepare(
@@ -114,7 +97,6 @@ api
         return c.json({
           code: 0,
           message: 'Product has been created'
-        
         }, {
           status: 201
         });

@@ -23,7 +23,6 @@ type _validationErrType = ({
 
 // TODO replace with Hook type from @hono/zod-validator
 const validator: Hook<z.TypeOf<z.ZodType>, Env, string, object> = (result, c) => {
-  console.log('result==>', result)
   if (!result.success) {
     const err = result.error;
     const validationErrs: _validationErrType = [];

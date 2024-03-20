@@ -4,7 +4,6 @@ import { Binding } from '../bindings/binding';
 const sample = new Hono<{ Bindings: Binding}>();
 
 sample.get('/', (c: Context) => { 
-  console.log(c)
   // return new Response('Hello World!')
   return c.text('Hello! Welcome to my first Hono app sample!')
 });

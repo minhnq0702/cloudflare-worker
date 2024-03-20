@@ -69,7 +69,6 @@ router
 		if (formData) {
 			const entries = [...formData.entries()];
 			for (const [name, value] of entries) {
-				console.log(name, value);
 				await env.WorkerTest.put(name, value as string);
 			}
 			return json({
