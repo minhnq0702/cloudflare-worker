@@ -65,7 +65,7 @@ npx eslint --init
 
 
 ## List of workers in this project
-### 1. [worker-test](https://worker-test.minhnq-0702.workers.dev/)
+### [worker-test](https://worker-test.minhnq-0702.workers.dev/)
 
 #### KV Binding - Expose URL to interact with KV
 `Enpoint`: `/test-kv`
@@ -103,7 +103,7 @@ Lear how to setup cron run schedule action in this sample worker
 #### Library
 - [Router library: ITTY-ROUTER](https://itty.dev/)
 
-### 2. [worker-D1-integration](https://my.mingne.dev)
+### [worker-D1-integration](https://my.mingne.dev)
 > under construction
 
 #### Library
