@@ -2,8 +2,6 @@ import type { Env } from 'hono';
 import { Hook } from '@hono/zod-validator';
 import { z } from 'zod';
 
-
-
 const customerSchema = z.object({
   id: z.number().optional(),
   fullname: z.string(),
