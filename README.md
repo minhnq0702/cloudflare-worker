@@ -79,13 +79,17 @@ Method:
 - `ALL`: `/redirect?url=https%3A%2F%2Fmy.mingne.dev`
     - should escape redirected url
 
-[Router library: ITTY-ROUTER](https://itty.dev/)
-
 #### Cron run scheduled action
 
 Lear how to setup cron run schedule action in this sample worker
 - [Schedule Code](worker-test/src/index.ts)
 - [Cron setup](worker-test/wrangler.toml)
 
+#### Library
+- [Router library: ITTY-ROUTER](https://itty.dev/)
+
 ### 2. [worker-D1-integration](https://my.mingne.dev)
 > under construction
+
+#### Library
+- [ZOD Validator](https://zod.dev/)
