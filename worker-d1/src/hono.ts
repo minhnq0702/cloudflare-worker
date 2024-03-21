@@ -4,7 +4,6 @@ import { RegExpRouter } from 'hono/router/reg-exp-router';
 
 import { Binding } from './bindings/binding';
 import router from './router';
-import { cors } from 'hono/cors';
 
 
 // init app hono
@@ -13,7 +12,13 @@ const app = new Hono<{ Bindings: Binding }>({
 });
 
 // * add cors middleware
+import { cors } from 'hono/cors';
 app.use('*', cors());
+
+
+// * add logger middleware
+import { logger } from 'hono/logger';
+app.use(logger());
 
 // * add sample middleware
 app.use(async (c: Context, next: Next) => {
