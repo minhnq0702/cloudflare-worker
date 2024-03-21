@@ -171,6 +171,15 @@ api
       SELECT * FROM sale_order WHERE id = ?
     `).bind(id).first();
 
+    if (!result) {
+      return c.json({
+        code: 1,
+        message: 'Sale Order not found'
+      }, {
+        status: 404
+      });
+    }
+
     // TODO should query to database
     return c.json({
       code: 0,
