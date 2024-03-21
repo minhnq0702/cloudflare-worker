@@ -19,7 +19,7 @@ const productSchema = z.object({
 const saleOrderSchema = z.object({
   id: z.number().optional(),
   customer_id: z.number(),
-  order_date: z.date(),
+  order_date: z.string().datetime(),
   total: z.number().optional().default(0.0),
 });
 

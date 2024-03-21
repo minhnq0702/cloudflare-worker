@@ -28,6 +28,7 @@ CREATE TABLE sale_order (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     customer_id INTEGER NOT NULL,
     order_date DATE NOT NULL,
+    total DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
 
