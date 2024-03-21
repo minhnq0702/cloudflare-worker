@@ -101,10 +101,11 @@ Lear how to setup cron run schedule action in this sample worker
 - [Cron setup](worker-test/wrangler.toml)
 
 #### Library
-- [Router library: ITTY-ROUTER](https://itty.dev/)
+- [Router library: ITTY-ROUTER](https://itty.dev)
 
-### [worker-D1-integration](https://my.mingne.dev)
+### [worker-D1-integration](https://worker-d1.minhnq-0702.workers.dev/)
 > under construction
 
 #### Library
-- [ZOD Validator](https://zod.dev/)
+- [Hono](https://hono.dev)
+- [ZOD Validator](https://zod.dev)
