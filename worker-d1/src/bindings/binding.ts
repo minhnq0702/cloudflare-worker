@@ -17,4 +17,5 @@ export type Binding = {
 
 	// Binding to D1 Database
 	DB: D1Database;
+	JWT_SECRET: string;
 }

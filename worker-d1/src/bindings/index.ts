@@ -2,6 +2,11 @@ import type { Env } from 'hono';
 import { Hook } from '@hono/zod-validator';
 import { z } from 'zod';
 
+const loginSchema = z.object({
+  username: z.string(),
+  password: z.string(),
+});
+
 const customerSchema = z.object({
   id: z.number().optional(),
   fullname: z.string(),
@@ -53,6 +58,7 @@ const validator: Hook<z.TypeOf<z.ZodType>, Env, string, object> = (result, c) =>
 }
 
 export default {
+  loginSchema,
   customerSchema,
   productSchema,
   saleOrderSchema,
