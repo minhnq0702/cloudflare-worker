@@ -45,7 +45,7 @@ api
         await c.env.DB
           .prepare(
             `INSERT INTO customer (fullname, phone, email) VALUES (?, ?, ?)`
-        )
+          )
           .bind(_customer.fullname, _customer.phone, _customer.email || null)
           .run();
         
@@ -65,7 +65,28 @@ api
         });
       }
     },
-  );
+  )
+  .get('/:id', async (c) => {
+    const { id } = c.req.param();
+    const result = await c.env.DB.prepare(`
+      SELECT * FROM customer WHERE id = ?
+    `).bind(id).first();
+
+    if (!result) {
+      return c.json({
+        code: 1,
+        message: 'Customer not found'
+      }, {
+        status: 404
+      });
+    }
+
+    return c.json({
+      code: 0,
+      message: 'Customer Detail',
+      data: result
+    })
+  });
 
 // ******* Product *******
 api
@@ -108,7 +129,7 @@ api
           status: 400
         });
       }
-    })
+  })
   .get('/:id', async (c) => {
     const { id } = c.req.param();
     const result  = await c.env.DB.prepare(`
@@ -164,7 +185,7 @@ api
           status: 400
         });
       }
-    })
+  })
   .get('/:id', async (c) => {
     const { id } = c.req.param();
     const result = await c.env.DB.prepare(`
@@ -180,7 +201,6 @@ api
       });
     }
 
-    // TODO should query to database
     return c.json({
       code: 0,
       message: 'Sale Order Detail',
