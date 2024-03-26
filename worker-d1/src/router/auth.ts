@@ -20,6 +20,7 @@ auth.post('/login',
       c.res.headers.set(
         'Set-Cookie',
         `token=${token}; Path=/; HttpOnly; Secure; SameSite=Lax`
+        // `token=${token}; Path=/; HttpOnly; Secure; SameSite=Restricted`
       );
       return c.json({
         code: 0,
