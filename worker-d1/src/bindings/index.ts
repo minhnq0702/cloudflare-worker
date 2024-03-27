@@ -7,6 +7,15 @@ const loginSchema = z.object({
   password: z.string(),
 });
 
+const userSchema = z.object({
+  id: z.number().optional(),
+  username: z.string(),
+  password: z.string(),
+  fullname: z.string(),
+  email: z.string().email().nullable().optional(),
+  role: z.string().optional(),
+});
+
 const customerSchema = z.object({
   id: z.number().optional(),
   fullname: z.string(),
@@ -59,6 +68,7 @@ const validator: Hook<z.TypeOf<z.ZodType>, Env, string, object> = (result, c) =>
 
 export default {
   loginSchema,
+  userSchema,
   customerSchema,
   productSchema,
   saleOrderSchema,

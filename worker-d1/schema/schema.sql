@@ -3,13 +3,26 @@ DROP TABLE IF EXISTS sale_order_item;
 DROP TABLE IF EXISTS sale_order;
 DROP TABLE IF EXISTS customer;
 DROP TABLE IF EXISTS product;
+DROP TABLE IF EXISTS user;
+
+-- add table user
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL,
+    fullname TEXT NOT NULL,
+    email TEXT NULL,
+    role JSON NOT NULL DEFAULT '{}'
+);
 
 -- add table customer
 CREATE TABLE customer (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     fullname TEXT NOT NULL,
     phone TEXT NOT NULL,
-    email TEXT NULL
+    email TEXT NULL,
+    user_id INTEGER NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
 -- add table product
