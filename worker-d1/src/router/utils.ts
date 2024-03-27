@@ -33,7 +33,7 @@ function hashPassword(password: string): Promise<string> {
   const salt = nodeCrypto.randomBytes(16).toString('base64');
 
   return new Promise((resolve, reject) => {
-    const iterations = 150000;
+    const iterations = 100000;
     const keylen = 64; // 64 bytes = 512 bits
     const digest = 'sha512';
 
