@@ -34,6 +34,8 @@ app.use(async (c: Context, next: Next) => {
     c.res = Response.json({
       code: 500,
       message: c.error.message,
+    }, {
+      status: 500,
     });
   }
 

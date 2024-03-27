@@ -1,12 +1,9 @@
 import { Hono, Context } from 'hono';
 import { zValidator } from '@hono/zod-validator';
-import bcrypt from 'bcryptjs';
-
+import hashPassword from './utils';
 
 import { Binding } from "../bindings/binding";
 import schema from "../bindings";
-
-
 
 
 const userApi = new Hono<{ Bindings: Binding }>();
@@ -28,12 +25,9 @@ userApi
   .post(
     zValidator('json', schema.userSchema, schema.validator),
     async (c) => {
-     // validate request body
+      // validate request body
       const _user = c.req.valid('json');
-
-      // hash password
-      const hash = bcrypt.hashSync(_user.password, 10);
-      _user.password = hash;
+      _user.password = await hashPassword(_user.password)
 
       try {
         // insert user to database

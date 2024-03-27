@@ -7,6 +7,24 @@ import { Jwt } from 'hono/utils/jwt';
 
 const auth = new Hono<{ Bindings: Binding }>();
 
+auth.post('/register',
+  zValidator('json', schema.userSchema, schema.validator),
+  async (c) => {
+    // TODO: register user
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const _user = c.req.valid('json');
+    // hash password
+    // insert user to database
+    // return response
+    return c.json({
+      code: 0,
+      message: 'User has been created',
+    }, {
+      status: 201,
+    });
+  }
+);
+
 // api get user name and password from request body
 auth.post('/login',
   zValidator('json', schema.loginSchema, schema.validator),
