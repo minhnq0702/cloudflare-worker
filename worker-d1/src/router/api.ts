@@ -3,6 +3,7 @@ import { zValidator } from '@hono/zod-validator';
 
 import { Binding } from '../bindings/binding';
 import schema from '../bindings';
+import user from './user';
 
 const api = new Hono<{ Bindings: Binding }>();
 
@@ -207,5 +208,8 @@ api
       data: result
     })
   });
+
+// ******* User *******
+api.route('/user', user);
 
 export default api;

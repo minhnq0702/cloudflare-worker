@@ -24,7 +24,7 @@ app.use(logger());
 
 // * add sample middleware
 app.use(async (c: Context, next: Next) => {
-  console.log(c.req.header());
+  // console.log(c.req.header());
 
   await next()
   if (c.error) {
