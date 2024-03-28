@@ -104,7 +104,55 @@ Lear how to setup cron run schedule action in this sample worker
 - [Router library: ITTY-ROUTER](https://itty.dev)
 
 ### [worker-D1-integration](https://worker-d1.minhnq-0702.workers.dev/)
-> under construction
+> Create Rest API with Hono and integrate with D1 Database (a cloudflare serverless database)
+
+#### Add Hono API
+- Setup Hono API App
+    ```typescript
+    app.route('/sample', router.sample);
+    app.route('/auth', router.auth);
+    app.route('/api', router.api);
+
+
+    export default app
+    ```
+
+#### Add JWT Authentication
+- Add Secret key environment in `{SOURCE}/worker-d1/.dev.vars` file
+    ```bash
+    JWT_SECRET='dev-ne'
+    ```
+- Deploy key to Cloudflare worker
+    ```bash
+    npx wrangler secret put JWT_SECRET
+    ```
+- Setup JWT Authention middleware for `/api/*`
+    > use JWT and get it from cookies
+    ```typescript
+    // * add JWT Authentification middleware
+    app.use(
+        '/api/*',
+        async (c, next) => {
+            const jwtMiddleware = jwt({
+                secret: c.env.JWT_SECRET,
+                cookie: 'token',
+            });
+            return jwtMiddleware(c, next)
+        }
+    )
+    ```
+
+#### Integrate with D1
+- Update D1 Database Configuration in [wrangler.toml](worker-d1/wrangler.toml)
+
+- Database Schema SQL: [Schema](worker-d1/schema/schema.sql)
+    ```bash
+    # migrate database
+    cd {SOURCE}/cloudflare-worker/worker-d1
+
+    # yarn dev-d1-migrate # (for local environment)
+    yarn d1-migrate
+    ```
 
 #### Library
 - [Hono](https://hono.dev)
