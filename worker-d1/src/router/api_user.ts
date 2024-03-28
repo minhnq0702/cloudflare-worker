@@ -5,7 +5,6 @@ import hashPassword from './utils';
 import { Binding } from "../bindings/binding";
 import schema from "../bindings";
 
-
 const userApi = new Hono<{ Bindings: Binding }>();
 
 userApi
