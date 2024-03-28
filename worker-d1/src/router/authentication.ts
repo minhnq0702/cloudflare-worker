@@ -27,9 +27,9 @@ auth.post('/register',
 
 // api get user name and password from request body
 auth.post('/login',
-  zValidator('json', schema.loginSchema, schema.validator),
+  zValidator('form', schema.loginSchema, schema.validator),
   async (c) => {
-    const { username, password } = c.req.valid('json');
+    const { username, password } = c.req.valid('form');
     if (username === 'admin' && password === 'admin') {
       const token = await Jwt.sign({
         username,
